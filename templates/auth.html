@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    
+    {%if coockie == ''%}
+    {% set webTitle = 'Войти' %}
+    {%else%}
+    {% set webTitle = 'Редактирование' %}
+    {%endif%} 
+    {% include 'Blocks/head.html' %}
+
+</head>
+
+<body >
+        {% include 'Blocks/header.html' %}
+      
+
+  </header>
+  {%if coockie == ''%}
+  <div class="container">
+    <form class="form-signin">
+      <h1 class="h3 mb-3 font-weight-normal">Форма авторизаии</h1>
+      <label for="login" class="sr-only">Ваш логин</label>
+      <input type="text" name="login" id="login" class="form-control" placeholder="Введите ваш логин" required="" autofocus="">
+
+      <label for="password" class="sr-only">Ваш пароль</label>
+      <input type="password" id="password" class="form-control" placeholder="Введите ваш пароль" required="">
+      <div class="alert alert-danger mt-2 " id="errorBlock" ></div>
+      <button class="btn btn-lg btn-primary btn-block" id="authAdmin" type="button">Войти</button>
+    </form>
+</div>
+{%else%}
+<div class="container">
+  <div class="editBlockContainer" id="editBlockContainer"></div>
+</div>
+
+{%endif%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/index.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>
