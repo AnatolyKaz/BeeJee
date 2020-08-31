@@ -1,6 +1,9 @@
 //==============Вывод текущих задач=============// 
-$(document).ready(function taskList () {
-  let taskList = document.getElementById('editBlockContainer');
+document.addEventListener("DOMContentLoaded", taskListRender);
+
+let taskList = document.getElementById('taskList');
+
+function taskListRender() {
   if (taskList) {
     $.ajax({
       url: 'ajax/Task.php',
@@ -9,11 +12,11 @@ $(document).ready(function taskList () {
       data: {},
       dataType: 'html',
       success: function (data) {
-        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskList">${data}</div>`);
+        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
       }
     });
   }
-});
+}
 
 //==============Добавление задачи=============//
 $('#insertTask').click( function () {
@@ -67,6 +70,8 @@ $('#exitAdmin').click( function () {
 });
 
 ////============Манипуляции с заданиями
+let downEdge = 0 
+let sortStatus = ''
 let container = document.querySelector('.container')
 container.addEventListener('click',pushButton)
 
@@ -101,4 +106,52 @@ function pushButton (event) {
         }
     });
   }
+  ///================Sort Task================
+  
+
+  if (targetId == 'sortNameButton') {
+    sortStatus = targetId
+  }
+  if (targetId == 'sortEmailButton') {
+    sortStatus = targetId
+  }
+  if (targetId == 'sortStatusButton') {
+    sortStatus = targetId
+  }
+  if (sortStatus != '') {
+    $.ajax({
+      url: 'ajax/Task.php',
+      type: 'POST',
+      cache: false,
+      data: {'sortStatus' : sortStatus },
+      dataType: 'html',
+      success: function (data) {
+        $('#taskList').empty();
+        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
+      }
+    });
+  }
+  ///============================Pagination ============
+  
+  if (targetId == 'nextPagination' || targetId ==  'prevPagination') {
+    if (targetId == 'nextPagination') {
+      downEdge += 3
+    } else if (downEdge > 0 ) {
+      downEdge -= 3
+    }
+    $.ajax({
+      url: 'ajax/Task.php',
+      type: 'POST',
+      cache: false,
+      data: {'downEdge' : downEdge, 'sortStatus' : sortStatus  },
+      dataType: 'html',
+      success: function (data) {
+        $('#taskList').empty();
+        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
+      }
+    });
+  }
+
+  
+
 }

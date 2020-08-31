@@ -3,7 +3,7 @@
 namespace app;
 use PDO;
 
- class Admin
+    class Admin
 {
 
     protected $login;
@@ -106,4 +106,5 @@ use PDO;
         $this->query = $this->pdo->prepare($this->sql);
         $this->query->execute([$editText,$taskId]);
     }
+
 }

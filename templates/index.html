@@ -22,10 +22,21 @@
     </div>
     <textarea class="form-control mt-3" name='taskText' id="taskText" placeholder="Текст задачи" id="task" rows="3"></textarea>
     </form>
+   
+    <div class="containerSortButton">
+      <h4>Сортировать по:</h4>
+      <div class="btn-group mt-3" role="group">
+        <button type="button" class="ml-3 btn btn-secondary" id="sortNameButton">Имени</button>
+        <button type="button" class="btn btn-secondary" id="sortEmailButton">E-mail</button>
+        <button type="button" class="btn btn-secondary" id="sortStatusButton">Статусу</button>
+      </div>
+    </div>
     
   <div class="taskList" id="taskList"></div>
-  
-  
+  <div class="row justify-content-center mt-3 mb-4">
+  <button type="button" id="prevPagination" class="btn btn-info">Предидущаяя</button>
+  <button type="button" id="nextPagination" class="ml-3 btn btn-info">Следующая</button>
+</div>
   
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

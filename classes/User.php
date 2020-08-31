@@ -2,10 +2,6 @@
 namespace app;
 use PDO;
 
-// error_reporting(E_ALL | E_STRICT);
-// ini_set('display_errors', TRUE);
-// ini_set('display_startup_errors', TRUE);
-
  class User 
 {
     protected $UserName ;
@@ -30,10 +26,9 @@ use PDO;
         $this->query->execute([$this->UserName,$this->UserMail,$this->taskText]);
         echo 1 ;
     }
-    public function TaskList ()
+    public function TaskList ($sql)
     {
-        $this->sql = "SELECT * FROM `tasksList` ";
-        $this->query = $this->pdo->query($this->sql);
+        $this->query = $this->pdo->query($sql);
         while ($task = $this->query->fetch(PDO::FETCH_OBJ)){
             echo "<div class='card mt-3' id='$task->taskId' >";
             if ($task->taskStatus == 1) {
