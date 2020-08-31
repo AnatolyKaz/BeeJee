@@ -71,9 +71,6 @@ $('#exitAdmin').click( function () {
 
 ////============Манипуляции с заданиями
 let downEdge = 0 
-let sortNameClick = 0
-let sortEmailClick = 0
-let sortStatusClick = 0
 let statusClicked = 0
 let sortStatus = ''
 let container = document.querySelector('.container')
