@@ -71,6 +71,10 @@ $('#exitAdmin').click( function () {
 
 ////============Манипуляции с заданиями
 let downEdge = 0 
+let sortNameClick = 0
+let sortEmailClick = 0
+let sortStatusClick = 0
+let statusClicked = 0
 let sortStatus = ''
 let container = document.querySelector('.container')
 container.addEventListener('click',pushButton)
@@ -110,12 +114,27 @@ function pushButton (event) {
   
 
   if (targetId == 'sortNameButton') {
+    if (statusClicked == 1) {
+      statusClicked = 0
+    }else {
+      statusClicked = 1
+    }
     sortStatus = targetId
   }
   if (targetId == 'sortEmailButton') {
+    if (statusClicked == 1) {
+      statusClicked = 0
+    }else {
+      statusClicked = 1
+    }
     sortStatus = targetId
   }
   if (targetId == 'sortStatusButton') {
+    if (statusClicked == 1) {
+      statusClicked = 0
+    }else {
+      statusClicked = 1
+    }
     sortStatus = targetId
   }
   if (sortStatus != '') {
@@ -123,7 +142,7 @@ function pushButton (event) {
       url: 'ajax/Task.php',
       type: 'POST',
       cache: false,
-      data: {'sortStatus' : sortStatus },
+      data: {'sortStatus' : sortStatus,'statusClicked' : statusClicked },
       dataType: 'html',
       success: function (data) {
         $('#taskList').empty();
@@ -143,7 +162,7 @@ function pushButton (event) {
       url: 'ajax/Task.php',
       type: 'POST',
       cache: false,
-      data: {'downEdge' : downEdge, 'sortStatus' : sortStatus  },
+      data: {'downEdge' : downEdge, 'sortStatus' : sortStatus ,'statusClicked' : statusClicked },
       dataType: 'html',
       success: function (data) {
         $('#taskList').empty();

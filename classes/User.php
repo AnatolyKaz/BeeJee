@@ -37,10 +37,13 @@ use PDO;
                 echo "<h5 class='userName card-header'>$task->userName</h5>";
             }
             echo "<div class='card-body'>
-                <h5 class='card-title'>$task->email</h5>
-                <p class='card-text'>$task->taskText</p>";
+                <h5 class='card-title'>$task->email</h5> ";
+                if($task->EditStatus == 1 ){
+                    
+                echo "<div class='alert alert-info'>Редактированно Администратором</div>";
+                }
+            echo  " <p class='card-text'>$task->taskText</p>";
             if (isset($_COOKIE['login'])) {
-                echo "";
                 echo "<button type='button' task-id='$task->taskId' id='deleteTask' class='btn ml-3 btn-danger'>Удалить</button>";
                 if ($task->taskStatus != 1) {
                 echo "<button type='button' task-id='$task->taskId' id='newStatus' class='btn ml-3 btn-success'>Выполнено</button>";

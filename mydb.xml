@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.9.3
+- https://www.phpmyadmin.net
+-
+- Хост: localhost:8889
+- Время создания: Авг 31 2020 г., 04:46
+- Версия сервера: 5.7.26
+- Версия PHP: 7.4.2
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="todoList" collation="utf8_general_ci" charset="utf8">
+            <pma:table name="authAdmin">
+                CREATE TABLE `authAdmin` (
+                  `AdminId` int(11) NOT NULL AUTO_INCREMENT,
+                  `AdminLogin` varchar(50) NOT NULL,
+                  `AdminPass` varchar(50) NOT NULL,
+                  UNIQUE KEY `AdminId` (`AdminId`)
+                ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="tasksList">
+                CREATE TABLE `tasksList` (
+                  `taskId` int(11) NOT NULL AUTO_INCREMENT,
+                  `userName` varchar(50) NOT NULL,
+                  `email` varchar(100) NOT NULL,
+                  `taskStatus` int(1) DEFAULT NULL,
+                  `taskText` text NOT NULL,
+                  UNIQUE KEY `idTask` (`taskId`)
+                ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - База данных: 'todoList'
+    -->
+    <database name="todoList">
+        <!-- Таблица authAdmin -->
+        <table name="authAdmin">
+            <column name="AdminId">1</column>
+            <column name="AdminLogin">admin</column>
+            <column name="AdminPass">a72417c1378123911f35be1092df3778</column>
+        </table>
+        <table name="authAdmin">
+            <column name="AdminId">2</column>
+            <column name="AdminLogin">admin</column>
+            <column name="AdminPass">a72417c1378123911f35be1092df3778</column>
+        </table>
+        <table name="authAdmin">
+            <column name="AdminId">3</column>
+            <column name="AdminLogin">admin</column>
+            <column name="AdminPass">a72417c1378123911f35be1092df3778</column>
+        </table>
+        <!-- Таблица tasksList -->
+        <table name="tasksList">
+            <column name="taskId">1</column>
+            <column name="userName">dfdfdfdfgdfg</column>
+            <column name="email">dfdfdfdfgdfg</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">Самый первый редактированный текст!!!!!</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">2</column>
+            <column name="userName">fgdfdgdgd</column>
+            <column name="email">dfgdfgdfgdf</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">Второй редактированный текст!!!!</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">3</column>
+            <column name="userName">UserName</column>
+            <column name="email">UserEmail</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">Task Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit in voluptatum animi quibusdam. Odio doloremque inventore quis perferendis! Nulla obcaecati assumenda quaerat aperiam ab quia eius sed, doloribus illo rem, sequi, error velit dolor voluptatum! Quae iusto rerum ut fugiat iste sunt nihil facilis architecto, nemo accusamus ab ipsa corporis?</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">4</column>
+            <column name="userName">fsfsfsdfsdfsdfsf</column>
+            <column name="email">sdsfsfsdfsdfsf</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">fsfsdfsfsfsdfsdfsdf</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">5</column>
+            <column name="userName">ЛЕЕЕЕЕЕЕЕНАААА</column>
+            <column name="email">СМААААРИИИИ</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">ЧТО ПОЛУЧАЕТСЯЯЯЯЯЯ</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">6</column>
+            <column name="userName">Daashdajaak;j;</column>
+            <column name="email">faafdfccsdccsdcsdcsd</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis blandit mauris porttitor eros viverra elementum. Donec porttitor enim vitae eros rutrum, vitae tristique dolor rhoncus. Duis sagittis dignissim ligula vel pulvinar. Nullam at congue leo, quis bibendum tellus. Etiam felis diam, aliquam eu nisl quis, sodales iaculis orci. Aliquam eget.</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">7</column>
+            <column name="userName">vxcvxcvxcv</column>
+            <column name="email">ascascacaxcxczx</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">$(&amp;#39;#authAdmin&amp;#39;).click( function () {
+    let login = $(&amp;#39;#login&amp;#39;).val();
+    let password = $(&amp;#39;#password&amp;#39;).val();
+
+    $.ajax({
+      url: &amp;#39;ajax/auth.php&amp;#39;,
+      type: &amp;#39;POST&amp;#39;,
+      cache: false,
+      data: {&amp;#39;login&amp;#39; : login , &amp;#39;password&amp;#39; : password},
+      dataType: &amp;#39;html&amp;#39;,
+      success: function (data) {
+        if (data == &amp;#39;Готово&amp;#39;){
+          $(&amp;#39;#authAdmin&amp;#39;).text(data);
+        $(&amp;#39;#errorBlock&amp;#39;).hide();
+        location=&amp;#34;index.php&amp;#34;;
+        }
+        else {
+          $(&amp;#39;#errorBlock&amp;#39;).show();
+          $(&amp;#39;#errorBlock&amp;#39;).text(data);
+        }
+      }
+    });
+  });
+  $(&amp;#39;#exitAdmin&amp;#39;).click( function () {
+    console.log(&amp;#39;fffdfdfdf&amp;#39;);
+    $.ajax({
+      url: &amp;#39;ajax/exit.php&amp;#39;,
+      type: &amp;#39;POST&amp;#39;,
+      cache: false,
+      data: {},
+      dataType: &amp;#39;html&amp;#39;,
+      success: function (data) {
+          document.location.reload(true);
+        }
+    });
+  });</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">8</column>
+            <column name="userName">vvxcvxcvxv</column>
+            <column name="email">vxcvxvxcvxcvx</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">$('#insertTask').click( function () {
+    let UserName = $('#UserName').val();
+    let UserMail = $('#UserMail').val();
+    let taskText = $('#taskText').val();
+    
+  
+    $.ajax({
+      url: 'ajax/InsertTask.php',
+      type: 'POST',
+      cache: false,
+      data: {
+        'UserName' : UserName,
+        'UserMail' : UserMail,
+        'taskText' : taskText,
+        },
+      dataType: 'html',
+      success: function  (data) {
+        console.log(data);
+        if (data ==  1){
+          $('#errorBlock').hide();
+          $('#insertTask').text('Добавлено');
+          setTimeout(function(){
+            document.location.reload(true);;
+            }, 2500);
+          
+        }
+        else {
+          $('#errorBlock').show();
+          $('#errorBlock').text(data);
+        }
+      }
+    });
+  });
+  //==============Добавление задачи=============//
+  $(document).ready(function taskList () {
+    let taskList = document.getElementById('taskList');
+    $.ajax({
+    url: 'ajax/Task.php',
+    type: 'POST',
+    cache: false,
+    data: {},
+    dataType: 'html',
+    success: function (data) {
+      taskList.insertAdjacentHTML(&quot;beforeend&quot;,`&lt;div class=&quot;card mt-3&quot; id=&quot;taskList&quot;&gt;${data}&lt;/div&gt;`);
+      }
+  });
+});
+  // //==============Авторизация=============//
+  // $('#auth_user').click( function () {
+  //   let login_user = $('#login_user').val();
+  //   let pass = $('#pass').val();
+  
+  //   $.ajax({
+  //     url: 'ajax/auth.php',
+  //     type: 'POST',
+  //     cache: false,
+  //     data: {'login_user' : login_user , 'pass' : pass},
+  //     dataType: 'html',
+  //     success: function  (data) {
+  //       if (data ==  1){
+  //         $('#errorBlock').hide();
+  //         $('#auth_user').text('Успех');
+  //         document.location.reload(true);
+  //       }
+  //       else {
+  //         $('#errorBlock').show();
+  //         $('#errorBlock').text(data);
+  //       }
+  //     }
+  //   });
+  // });
+  // //==============Авторизация=============//</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">9</column>
+            <column name="userName">xcvxdfhdgdf</column>
+            <column name="email">dfgrgergdfgdgdf</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">$('#insertTask').click( function () {
+    let UserName = $('#UserName').val();
+    let UserMail = $('#UserMail').val();
+    let taskText = $('#taskText').val();
+    
+  
+    $.ajax({
+      url: 'ajax/InsertTask.php',
+      type: 'POST',
+      cache: false,
+      data: {
+        'UserName' : UserName,
+        'UserMail' : UserMail,
+        'taskText' : taskText,
+        },
+      dataType: 'html',
+      success: function  (data) {
+        console.log(data);
+        if (data ==  1){
+          $('#errorBlock').hide();
+          $('#insertTask').text('Добавлено');
+          setTimeout(function(){
+            document.location.reload(true);;
+            }, 2500);
+          
+        }
+        else {
+          $('#errorBlock').show();
+          $('#errorBlock').text(data);
+        }
+      }
+    });
+  });
+  //==============Добавление задачи=============//
+  $(document).ready(function taskList () {
+    let taskList = document.getElementById('taskList');
+    $.ajax({
+    url: 'ajax/Task.php',
+    type: 'POST',
+    cache: false,
+    data: {},
+    dataType: 'html',
+    success: function (data) {
+      ta
+      }
+  });
+});
+  // //==============Авторизация=============//
+  // $('#auth_user').click( function () {
+  //   let login_user = $('#login_user').val();
+  //   let pass = $('#pass').val();</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">12</column>
+            <column name="userName">fdffsdf,douyrykjk</column>
+            <column name="email">u,kylryukrymtjhmhjdmhjyj</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">dmtyjmdhjdmhgjbnj,dtmtyshndmjdgjgjgnbntstyjssmhserggae]jpfogja]kd jejskvlb;dlkbjaifjbaod</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">13</column>
+            <column name="userName">Соображения безопасности</column>
+            <column name="email">Соображения безопасности</column>
+            <column name="taskStatus">1</column>
+            <column name="taskText">Будьте осторожны при использовании вставки HTML на страницу с помощью insertAdjacentHTML(), не используете пользовательский ввод, который не был экранирован.
+
+Не рекомендуется использовать insertAdjacentHTML(), когда требуется ввести простой текст. Используйте для этого свойство Node.textContent или метод Element.insertAdjacentText(). Они не будут интерпретировать текст как HTML, а вставят необработанный текст.</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">14</column>
+            <column name="userName">UserName2</column>
+            <column name="email">UserEmail2</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">Task Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit in voluptatum animi quibusdam. Odio doloremque inventore quis perferendis! Nulla obcaecati assumenda quaerat aperiam ab quia eius sed, doloribus illo rem, sequi, error velit dolor voluptatum! Quae iusto rerum ut fugiat iste sunt nihil facilis architecto, nemo accusamus ab ipsa corporis?</column>
+        </table>
+        <table name="tasksList">
+            <column name="taskId">15</column>
+            <column name="userName">UserName3</column>
+            <column name="email">UserEmail3</column>
+            <column name="taskStatus">NULL</column>
+            <column name="taskText">Task Lorem ipsum dolor sit amet consectetur, adipisicing elit. Suscipit in voluptatum animi quibusdam. Odio doloremque inventore quis perferendis! Nulla obcaecati assumenda quaerat aperiam ab quia eius sed, doloribus illo rem, sequi, error velit dolor voluptatum! Quae iusto rerum ut fugiat iste sunt nihil facilis architecto, nemo accusamus ab ipsa corporis?</column>
+        </table>
+    </database>
+</pma_xml_export>

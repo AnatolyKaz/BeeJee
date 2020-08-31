@@ -102,7 +102,7 @@ use PDO;
     }
     public function SaveEditText ($taskId,$editText)
     {
-        $this->sql = "UPDATE `tasksList` SET `taskText` = ? WHERE `taskId`= ? ";
+        $this->sql = "UPDATE `tasksList` SET `EditStatus` = 1 , `taskText` = ? WHERE `taskId`= ? ";
         $this->query = $this->pdo->prepare($this->sql);
         $this->query->execute([$editText,$taskId]);
     }
