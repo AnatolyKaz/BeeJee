@@ -31,15 +31,13 @@ use PDO;
         $this->query = $this->pdo->query($sql);
         while ($task = $this->query->fetch(PDO::FETCH_OBJ)){
             echo "<div class='card mt-3' id='$task->taskId' >";
-            if ($task->taskStatus == 1) {
-                echo "<h5 class='userName card-header' style='background-color: green;'>$task->userName</h5>";
-            }else {
-                echo "<h5 class='userName card-header'>$task->userName</h5>";
-            }
+            echo "<h5 class='userName card-header'>$task->userName</h5>";
             echo "<div class='card-body'>
                 <h5 class='card-title'>$task->email</h5> ";
+                if ($task->taskStatus == 1) {
+                    echo "<div class='alert alert-info'>Выполнено </div>";
+                }
                 if($task->EditStatus == 1 ){
-                    
                 echo "<div class='alert alert-info'>Редактированно Администратором</div>";
                 }
             echo  " <p class='card-text'>$task->taskText</p>";
