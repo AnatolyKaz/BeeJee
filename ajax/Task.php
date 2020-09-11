@@ -18,32 +18,32 @@ if (isset($_POST['downEdge'])) {
 } else {
     $downEdge = 0;
 }
-$sql = "SELECT * FROM `tasksList` ORDER BY `taskId` DESC LIMIT $downEdge ,3 ";
+$sql = "SELECT * FROM `tasksList` ORDER BY `taskId` DESC ";
 /////========================Sort =======
 if (isset($_POST['sortStatus'])) {
     $statusClicked =  $_POST['statusClicked'];
     $sortStatus = $_POST['sortStatus'];
     if ($sortStatus == 'sortNameButton') {
         if ($statusClicked == 1) {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `userName` ASC LIMIT $downEdge ,3 ";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `userName` ASC ";
         }else {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `userName` DESC LIMIT $downEdge ,3 ";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `userName` DESC ";
         }
         
     }
     if ($sortStatus == 'sortEmailButton') {
         if ($statusClicked == 1) {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `email` ASC LIMIT $downEdge ,3";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `email` ASC";
         }else {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `email` DESC LIMIT $downEdge ,3";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `email` DESC";
         }
         
     }
     if ($sortStatus == 'sortStatusButton') {
         if ($statusClicked == 1) {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `taskStatus` DESC LIMIT $downEdge ,3 ";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `taskStatus` DESC ";
         }else {
-            $sql = "SELECT * FROM `tasksList` ORDER BY `taskStatus` ASC LIMIT $downEdge ,3 ";
+            $sql = "SELECT * FROM `tasksList` ORDER BY `taskStatus` ASC ";
         }
         
     }

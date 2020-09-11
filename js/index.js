@@ -1,7 +1,15 @@
 "use strict"
 
-(function taskListRender() {
+document.addEventListener("DOMContentLoaded", taskListRender);
+document.addEventListener('click',pushButton)
+
+let sortStatus
+
+
+function taskListRender() {
+  
   let taskList = document.getElementById('taskList');
+
   if (taskList) {
     $.ajax({
       url: 'ajax/Task.php',
@@ -14,12 +22,7 @@
       }
     });
   }
-})();
-
-
-document.addEventListener('click',pushButton)
-
-let sortStatus
+}
 
 function pushButton (event) {
 
@@ -27,13 +30,16 @@ function pushButton (event) {
   let targetId = targetPush.getAttribute('id')
 
   if (targetId == 'newStatus') {
-    editStatus();
+    editStatus(targetPush);
   }
   if (targetId == 'exitAdmin') {
     exitAdmin();
   }
   if (targetId == 'insertTask') {
     newTask();
+  }
+  if (targetId == 'deleteTask') {
+    deleteTask(targetPush);
   }
   if (
   targetId == 'sortNameButton' || 
@@ -69,7 +75,9 @@ function newTask() {
           $('#errorBlock').hide();
           $('#insertTask').text('Добавлено');
           setTimeout(function(){
-            document.location.reload(true);
+            $('#insertTask').text('Добавить');
+            $('#taskList').empty();
+            taskListRender();
             }, 2500);
           
         }
@@ -96,7 +104,7 @@ function sortTask() {
   });
 }
 
-function editStatus() {
+function editStatus(targetPush) {
 
   let taskId = targetPush.getAttribute('task-id')
 
@@ -107,12 +115,13 @@ function editStatus() {
       data: {'taskId' : taskId},
       dataType: 'html',
       success: function () {
-        document.location.reload(true);
+        $('#taskList').empty();
+        taskListRender();
         }
     });
 }
 
-function deleteTask() {
+function deleteTask(targetPush) {
 
   let taskId = targetPush.getAttribute('task-id')
 
@@ -123,8 +132,9 @@ function deleteTask() {
       data: {'taskId' : taskId},
       dataType: 'html',
       success: function () {
-        document.location.reload(true);
-        }
+        $('#taskList').empty();
+        taskListRender();
+      }
     });
 };
 

@@ -14,9 +14,11 @@
       <div class="row">
       <input type="text" name='UserName' id="UserName" class="form-control col-3 ml-3" placeholder="Имя пользователя" required="" autofocus="">
       <input type="email" name='UserMail' id="UserMail" class="form-control ml-4 col-3" placeholder="E-mail" required="" autofocus="">
-      <button class="btn btn-primary  col-3 ml-4 " type="button" id="insertTask">Добавить</button>
+      <button class="btn btn-primary  col-3 ml-4 " type="reset" id="insertTask">Добавить</button>
       {%if coockie != ''%}
-      <button type='button' id='editTask' class='editTask btn btn-warning mr-3 ml-auto'><a href="auth.php">Редактировать</a> </button>
+      <button type='button' id='editTask' class='editTask btn btn-warning mr-3 ml-auto'>
+        <a href="auth.php">Редактировать</a> 
+      </button>
       {%endif%}
     </div>
     <textarea class="form-control mt-3" name='taskText' id="taskText" placeholder="Текст задачи" id="task" rows="3"></textarea>
