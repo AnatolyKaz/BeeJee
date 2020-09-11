@@ -1,9 +1,7 @@
-//==============Вывод текущих задач=============// 
-document.addEventListener("DOMContentLoaded", taskListRender);
+"use strict"
 
-let taskList = document.getElementById('taskList');
-
-function taskListRender() {
+(function taskListRender() {
+  let taskList = document.getElementById('taskList');
   if (taskList) {
     $.ajax({
       url: 'ajax/Task.php',
@@ -16,10 +14,41 @@ function taskListRender() {
       }
     });
   }
+})();
+
+
+document.addEventListener('click',pushButton)
+
+let sortStatus
+
+function pushButton (event) {
+
+  let targetPush = event.target
+  let targetId = targetPush.getAttribute('id')
+
+  if (targetId == 'newStatus') {
+    editStatus();
+  }
+  if (targetId == 'exitAdmin') {
+    exitAdmin();
+  }
+  if (targetId == 'insertTask') {
+    newTask();
+  }
+  if (
+  targetId == 'sortNameButton' || 
+  targetId == 'sortEmailButton' || 
+  targetId == 'sortStatusButton'
+  ) {
+    sortStatus = targetId
+    sortTask();
+  }
+  
+ 
 }
 
-//==============Добавление задачи=============//
-$('#insertTask').click( function () {
+function newTask() {
+
     let UserName = $('#UserName').val();
     let UserMail = $('#UserMail').val();
     let taskText = $('#taskText').val();
@@ -36,12 +65,11 @@ $('#insertTask').click( function () {
         },
       dataType: 'html',
       success: function  (data) {
-        console.log(data);
         if (data ==  1){
           $('#errorBlock').hide();
           $('#insertTask').text('Добавлено');
           setTimeout(function(){
-            document.location.reload(true);;
+            document.location.reload(true);
             }, 2500);
           
         }
@@ -51,51 +79,27 @@ $('#insertTask').click( function () {
         }
       }
     });
-  });
-  
+}
 
+function sortTask() {
 
-//================Выход===================
-$('#exitAdmin').click( function () {
   $.ajax({
-    url: 'ajax/exit.php',
+    url: 'ajax/Task.php',
     type: 'POST',
     cache: false,
-    data: {},
+    data: {'sortStatus' : sortStatus},
     dataType: 'html',
     success: function (data) {
-        document.location.reload(true);
-      }
+      $('#taskList').empty();
+      taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
+    }
   });
-});
+}
 
-////============Манипуляции с заданиями
-let downEdge = 0 
-let statusClicked = 0
-let sortStatus = ''
-let container = document.querySelector('.container')
-container.addEventListener('click',pushButton)
+function editStatus() {
 
-function pushButton (event) {
-  let targetPush = event.target
-  let targetId = targetPush.getAttribute('id')
-  /////===============Delete Task===============
-  if (targetId == 'deleteTask' ) {
-    let taskId = targetPush.getAttribute('task-id')
-    $.ajax({
-      url: 'ajax/deleteTask.php',
-      type: 'POST',
-      cache: false,
-      data: {'taskId' : taskId},
-      dataType: 'html',
-      success: function () {
-        document.location.reload(true);
-        }
-    });
-  }
-  /////===============Edit Status===============
-  if (targetId == 'newStatus' ) {
-    let taskId = targetPush.getAttribute('task-id')
+  let taskId = targetPush.getAttribute('task-id')
+
     $.ajax({
       url: 'ajax/newStatus.php',
       type: 'POST',
@@ -106,68 +110,34 @@ function pushButton (event) {
         document.location.reload(true);
         }
     });
-  }
-  ///================Sort Task================
-  
+}
 
-  if (targetId == 'sortNameButton') {
-    if (statusClicked == 1) {
-      statusClicked = 0
-    }else {
-      statusClicked = 1
-    }
-    sortStatus = targetId
-  }
-  if (targetId == 'sortEmailButton') {
-    if (statusClicked == 1) {
-      statusClicked = 0
-    }else {
-      statusClicked = 1
-    }
-    sortStatus = targetId
-  }
-  if (targetId == 'sortStatusButton') {
-    if (statusClicked == 1) {
-      statusClicked = 0
-    }else {
-      statusClicked = 1
-    }
-    sortStatus = targetId
-  }
-  if (sortStatus != '') {
+function deleteTask() {
+
+  let taskId = targetPush.getAttribute('task-id')
+
     $.ajax({
-      url: 'ajax/Task.php',
+      url: 'ajax/deleteTask.php',
       type: 'POST',
       cache: false,
-      data: {'sortStatus' : sortStatus,'statusClicked' : statusClicked },
+      data: {'taskId' : taskId},
       dataType: 'html',
-      success: function (data) {
-        $('#taskList').empty();
-        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
-      }
+      success: function () {
+        document.location.reload(true);
+        }
     });
-  }
-  ///============================Pagination ============
-  
-  if (targetId == 'nextPagination' || targetId ==  'prevPagination') {
-    if (targetId == 'nextPagination') {
-      downEdge += 3
-    } else if (downEdge > 0 ) {
-      downEdge -= 3
-    }
-    $.ajax({
-      url: 'ajax/Task.php',
-      type: 'POST',
-      cache: false,
-      data: {'downEdge' : downEdge, 'sortStatus' : sortStatus ,'statusClicked' : statusClicked },
-      dataType: 'html',
-      success: function (data) {
-        $('#taskList').empty();
-        taskList.insertAdjacentHTML("beforeend",`<div class="card mt-3" id="taskListCard">${data}</div>`);
+};
+
+function exitAdmin() {
+
+  $.ajax({
+    url: 'ajax/exit.php',
+    type: 'POST',
+    cache: false,
+    data: {},
+    dataType: 'html',
+    success: function (data) {
+        document.location.reload(true);
       }
-    });
-  }
-
-  
-
+  });
 }
